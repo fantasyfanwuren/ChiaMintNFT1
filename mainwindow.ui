@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabMetaData">
        <attribute name="title">
@@ -114,6 +114,9 @@
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonUUID">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="text">
                 <string>获取</string>
                </property>
@@ -157,6 +160,9 @@
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonCSV">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="text">
                 <string>选择文件</string>
                </property>
