@@ -3,6 +3,8 @@
 #include <QProcess>
 #include <windows.h>
 #include <QTime>
+#include <QFileDialog>
+#include <QMessageBox>
 
 QString version = "V1.0";
 
@@ -47,5 +49,29 @@ void MainWindow::on_pushButtonUUID_clicked()
     cmd.waitForFinished(waitTinme);
     sleep(waitTinme);
     ui->pushButtonUUID->setEnabled(true);
+}
+
+void MainWindow::readCSV(const QString & path)
+{
+    qDebug()<<path;
+    qDebug()<<"23点10分,明天继续撸代码";
+}
+
+void MainWindow::on_pushButtonCSV_clicked()
+{
+    /*点击后将让用户选择自己的元数据表格，
+     * 这个表格是用另外一款图片合成软件创建的
+     * https://github.com/Jianghuchengphilip/Generate-NFT.git
+     * 除了提示表格文件的路径之外，还需要调用readCSV函数来读取这个表格内容*/
+
+    QString csvFile = QFileDialog::getOpenFileName(this,tr("打开元数据表格")
+                                                   ,QDir::currentPath(),
+                                                   tr("CSV文件(*.csv)"));
+    if(csvFile.isEmpty()){
+        QMessageBox::information(this,"提示","获取失败");
+    }else{
+        ui->lineEditCSV->setText(csvFile);
+    }
+
 }
 

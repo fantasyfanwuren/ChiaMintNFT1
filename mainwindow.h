@@ -21,6 +21,8 @@ public:
 private slots:
     void on_pushButtonUUID_clicked();
 
+    void on_pushButtonCSV_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
