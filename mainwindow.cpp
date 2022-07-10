@@ -5,6 +5,7 @@
 #include <QTime>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QFile>
 
 QString version = "V1.0";
 
@@ -37,7 +38,7 @@ void MainWindow::on_pushButtonUUID_clicked()
     /*通过后台调用CMD指令：start https://www.uuidgenerator.net/
      让用户从这个网站获取UUID*/
 
-    int waitTinme = 10000;
+    int waitTime = 10000;
     QString UUIDwebsite = "https://www.uuidgenerator.net/";
 
     ui->pushButtonUUID->setEnabled(false);
@@ -45,21 +46,36 @@ void MainWindow::on_pushButtonUUID_clicked()
     QStringList arguments;
     arguments<<"/c"<<"start"<<UUIDwebsite;
     cmd.start("cmd.exe",arguments);
-    cmd.waitForStarted(waitTinme);
-    cmd.waitForFinished(waitTinme);
-    sleep(waitTinme);
+    cmd.waitForStarted(waitTime);
+    cmd.waitForFinished(waitTime);
+    sleep(waitTime);
     ui->pushButtonUUID->setEnabled(true);
 }
 
 void MainWindow::readCSV(const QString & path)
 {
-    qDebug()<<path;
-    qDebug()<<"23点10分,明天继续撸代码";
+    /* 读取Meta.csv文件
+     * 将其内容提取到ui->tableViewMeta中 */
+
+    QFile file(path);
+    if(file.open(QIODevice::ReadOnly)){
+        QTextStream out(&file);
+        QStringList LineText = out.readAll().split('\n');
+        LineText.removeLast();
+        for(int i=0;i<LineText.count();++i){
+            QStringList text = LineText.at(i).split(',');
+            qDebug()<<text;
+            qDebug()<<"休息。。。。。。。。。。。。。。。。";
+        }
+    }
+
+
+
 }
 
 void MainWindow::on_pushButtonCSV_clicked()
 {
-    /*点击后将让用户选择自己的元数据表格，
+    /* 点击后将让用户选择自己的元数据表格，
      * 这个表格是用另外一款图片合成软件创建的
      * https://github.com/Jianghuchengphilip/Generate-NFT.git
      * 除了提示表格文件的路径之外，还需要调用readCSV函数来读取这个表格内容*/
@@ -71,7 +87,10 @@ void MainWindow::on_pushButtonCSV_clicked()
         QMessageBox::information(this,"提示","获取失败");
     }else{
         ui->lineEditCSV->setText(csvFile);
+        readCSV(csvFile);
     }
+
+
 
 }
 

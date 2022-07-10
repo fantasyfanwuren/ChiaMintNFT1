@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     void sleep(int sec);
+    void readCSV(const QString & path);
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
