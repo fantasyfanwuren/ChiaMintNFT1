@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabMetaData">
        <attribute name="title">
@@ -54,7 +54,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_5"/>
+              <widget class="QLineEdit" name="lineEditTwitter">
+               <property name="placeholderText">
+                <string>@chia_friends</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -81,7 +85,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_2"/>
+              <widget class="QLineEdit" name="lineEditName">
+               <property name="placeholderText">
+                <string>Chia Friends</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -95,10 +103,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_4"/>
+              <widget class="QLineEdit" name="lineEditUUID">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="placeholderText">
+                <string>f1ca9546-4f9e-41e3-96c8-2270ea8401d7</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="pushButtonUUID">
                <property name="text">
                 <string>获取</string>
                </property>
@@ -116,7 +131,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_6"/>
+              <widget class="QLineEdit" name="lineEditDiscord">
+               <property name="placeholderText">
+                <string>https://discord.gg/Jxc8mtyaXn</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -130,10 +149,14 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit"/>
+              <widget class="QLineEdit" name="lineEditCSV">
+               <property name="placeholderText">
+                <string>D:\programs\myNFT\Generate-NFT-main\Generate-NFT\output\edition test001\metadata.csv</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="pushButtonCSV">
                <property name="text">
                 <string>选择文件</string>
                </property>
@@ -151,7 +174,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_3"/>
+              <widget class="QLineEdit" name="lineEditDescription">
+               <property name="placeholderText">
+                <string>10,000 eco-bit NFTs on Chia, from Chia.</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -165,7 +192,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_7"/>
+              <widget class="QLineEdit" name="lineEditWebsite">
+               <property name="placeholderText">
+                <string>https://www.chiafriends.xyz/</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -179,20 +210,20 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
-            <widget class="QTableView" name="tableView_2"/>
+            <widget class="QTableView" name="tableViewMeta"/>
            </item>
           </layout>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QPushButton" name="pushButton_9">
+         <widget class="QPushButton" name="pushButtonMetaHelp">
           <property name="text">
            <string>帮助文档</string>
           </property>
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QPushButton" name="pushButton_12">
+         <widget class="QPushButton" name="pushButtonMetaVideo_2">
           <property name="text">
            <string>视频教程</string>
           </property>
@@ -212,14 +243,14 @@
          </spacer>
         </item>
         <item row="2" column="3">
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="pushButtonMake">
           <property name="text">
            <string>生成</string>
           </property>
          </widget>
         </item>
         <item row="2" column="4">
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="pushButtonResult">
           <property name="text">
            <string>结果查看</string>
           </property>
@@ -248,7 +279,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_17"/>
+              <widget class="QLineEdit" name="lineEditCurrentVersion">
+               <property name="placeholderText">
+                <string>1</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -275,7 +310,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_18"/>
+              <widget class="QLineEdit" name="lineEditNFTID">
+               <property name="placeholderText">
+                <string>3</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -302,12 +341,15 @@
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox">
+              <widget class="QSpinBox" name="spinBoxTaxRate">
                <property name="suffix">
                 <string>/10000</string>
                </property>
                <property name="maximum">
                 <number>1000</number>
+               </property>
+               <property name="value">
+                <number>500</number>
                </property>
               </widget>
              </item>
@@ -336,7 +378,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_14"/>
+              <widget class="QLineEdit" name="lineEditTargetAddress">
+               <property name="placeholderText">
+                <string>xch1hdsw96r44g2wtww3h0gv53v87apszsepqkea9jsgs880rwwwt3cskeh5pd</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -350,7 +396,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_15"/>
+              <widget class="QLineEdit" name="lineEditTaxAddress">
+               <property name="placeholderText">
+                <string>xch1hdsw96r44g2wtww3h0gv53v87apszsepqkea9jsgs880rwwwt3cskeh5pd</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -364,7 +414,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_16"/>
+              <widget class="QLineEdit" name="lineEditTotalVersion">
+               <property name="placeholderText">
+                <string>1</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -378,20 +432,20 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
-            <widget class="QTableView" name="tableView"/>
+            <widget class="QTableView" name="tableViewMint"/>
            </item>
           </layout>
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QPushButton" name="pushButton_10">
+         <widget class="QPushButton" name="pushButtonMintHelp">
           <property name="text">
            <string>帮助文档</string>
           </property>
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QPushButton" name="pushButton_11">
+         <widget class="QPushButton" name="pushButtonMetaVideo">
           <property name="text">
            <string>视频教程</string>
           </property>
@@ -426,10 +480,14 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_8"/>
+              <widget class="QLineEdit" name="lineEditPictureFile">
+               <property name="placeholderText">
+                <string>D:\programs\myNFT\Generate-NFT-main\Generate-NFT\output\edition test001\images</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_5">
+              <widget class="QPushButton" name="pushButtonPictureFile">
                <property name="text">
                 <string>选择文件夹</string>
                </property>
@@ -447,10 +505,14 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_9"/>
+              <widget class="QLineEdit" name="lineEditMetaFile">
+               <property name="placeholderText">
+                <string>C:\Users\lenovo\Desktop\ChiaMintNFT1\Meta</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_6">
+              <widget class="QPushButton" name="pushButtonMetaFile">
                <property name="text">
                 <string>选择文件夹</string>
                </property>
@@ -468,10 +530,14 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_10"/>
+              <widget class="QLineEdit" name="lineEditLicenceFile">
+               <property name="placeholderText">
+                <string>C:\Users\lenovo\Desktop\ChiaMintNFT1\Licence</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_7">
+              <widget class="QPushButton" name="pushButtonLicenceFile">
                <property name="text">
                 <string>选择文件夹</string>
                </property>
@@ -498,7 +564,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_11"/>
+              <widget class="QLineEdit" name="lineEditPictureLink">
+               <property name="placeholderText">
+                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -512,7 +582,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_12"/>
+              <widget class="QLineEdit" name="lineEditMetaLink">
+               <property name="placeholderText">
+                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -526,7 +600,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_13"/>
+              <widget class="QLineEdit" name="lineEditLicenceLink">
+               <property name="placeholderText">
+                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -534,7 +612,7 @@
          </widget>
         </item>
         <item row="3" column="4">
-         <widget class="QPushButton" name="pushButton_8">
+         <widget class="QPushButton" name="pushButtonMint">
           <property name="text">
            <string>开始铸造</string>
           </property>
