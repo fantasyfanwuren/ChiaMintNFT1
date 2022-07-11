@@ -18,8 +18,8 @@ class MainWindow : public QMainWindow
 private:
     void sleep(int sec);
     void readCSV(const QString & path);
-    void makeJson(int row,const QString &path);
-    void saveJsonFile(const QJsonObject &obj, const QString &path);
+    bool makeJson(int row,const QString &path);
+    bool saveJsonFile(const QJsonObject &obj, const QString &path);
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -31,6 +31,10 @@ private slots:
     void on_pushButtonCSV_clicked();
 
     void on_pushButtonMake_clicked();
+
+    void on_pushButtonResult_clicked();
+
+    void on_pushButtonMetaHelp_clicked();
 
 private:
     Ui::MainWindow *ui;

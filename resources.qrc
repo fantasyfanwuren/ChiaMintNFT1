@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/help"/>
+    <qresource lang="CH" prefix="/help">
+        <file>MetaHelp.txt</file>
+    </qresource>
+</RCC>

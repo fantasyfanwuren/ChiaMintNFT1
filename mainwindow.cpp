@@ -9,6 +9,8 @@
 #include <QStandardItemModel>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QJsonDocument>
+#include <QDesktopServices>
 
 QString version = "V1.0";
 
@@ -105,13 +107,22 @@ void MainWindow::on_pushButtonCSV_clicked()
 
 }
 
-void saveJsonFile(const QJsonObject &obj, const QString &path)
+bool MainWindow::saveJsonFile(const QJsonObject &obj, const QString &path)
 {
-    qDebug()<<obj;
-    qDebug()<<path;
+    QJsonDocument doc(obj);
+    QByteArray docByte = doc.toJson();
+    QFile fp(path);
+    if (!fp.open(QIODevice::WriteOnly)){
+        QMessageBox::information(this,"错误","写入Json失败！");
+        return false;
+    }
+    fp.write(docByte);
+    fp.close();
+    return true;
+
 }
 
-void MainWindow::makeJson(int row,const QString &path)
+bool MainWindow::makeJson(int row,const QString &path)
 {
     /* 将gui中的meta表格生成json文件
      * 保存在path文件夹中*/
@@ -190,7 +201,10 @@ void MainWindow::makeJson(int row,const QString &path)
     }
     obj.insert("attributes",theAttributes);
 
-    saveJsonFile(obj,path);
+    if(!saveJsonFile(obj,path))
+        return false;
+    else
+        return true;
 
 }
 
@@ -201,6 +215,7 @@ void MainWindow::on_pushButtonMake_clicked()
      * 保存元数据文件，并以表格第一列作为名称 */
 
     ui->pushButtonMake->setEnabled(false);
+
 
     QString metaPath = QDir::currentPath() + "/Meta";
     QDir metaDir(metaPath);
@@ -218,8 +233,47 @@ void MainWindow::on_pushButtonMake_clicked()
         return;
     }
 
-    makeJson(1,metaPath);
+    for(int i=0;i<MetaModel->rowCount();++i){
+        QString savePath = metaPath + QString::asprintf("/%d,json",i);
+        QStandardItem * tempitem = MetaModel->item(i,MetaModel->columnCount()-1);
+        if(makeJson(i,savePath)){
+            tempitem->setText("成功");
+        }else{
+            tempitem->setText("失败");
+        }
+    }
     ui->pushButtonMake->setEnabled(true);
+    ui->pushButtonResult->setEnabled(true);
 
+}
+
+
+void MainWindow::on_pushButtonResult_clicked()
+{
+
+    ui->pushButtonResult->setEnabled(false);
+    int waitTime = 3000;
+    QString path = QDir::currentPath() + "/Meta";
+    QDir metaDir(path);
+    if(metaDir.exists()){
+        QDesktopServices::openUrl(QUrl::fromLocalFile(path));//支持中文路径
+    }else{
+        QMessageBox::information(this,"提示","未生成Meta文件夹，无法查看");
+    }
+    sleep(waitTime);
+    ui->pushButtonResult->setEnabled(true);
+}
+
+
+void MainWindow::on_pushButtonMetaHelp_clicked()
+{
+    QString path =":/help/MetaHelp.txt";
+    QFile file(path);
+    qDebug()<<file;
+    if(file.exists()){
+        QDesktopServices::openUrl(QUrl::fromLocalFile(path));//支持中文路径
+    }else{
+        QMessageBox::information(this,"提示","打开帮助失败");
+    }
 }
 

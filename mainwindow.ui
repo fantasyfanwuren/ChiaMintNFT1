@@ -257,6 +257,9 @@
         </item>
         <item row="2" column="4">
          <widget class="QPushButton" name="pushButtonResult">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>结果查看</string>
           </property>
