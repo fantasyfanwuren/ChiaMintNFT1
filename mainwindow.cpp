@@ -82,10 +82,6 @@ void MainWindow::readCSV(const QString & path)
 
     ui->tableViewMeta->setModel(MetaModel);
     ui->tableViewMeta->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-
-
-
 }
 
 void MainWindow::on_pushButtonCSV_clicked()
@@ -105,7 +101,44 @@ void MainWindow::on_pushButtonCSV_clicked()
         readCSV(csvFile);
     }
 
+}
 
+
+void MainWindow::makeJson(QStandardItemModel * theModel,const QString &path)
+{
+    /* 将gui中的meta表格生成json文件
+     * 保存在path文件夹中*/
+    //qDebug()<<theModel;
+    qDebug()<<path;
+
+}
+
+void MainWindow::on_pushButtonMake_clicked()
+{
+    /* 在程序所在目录创建一个<Meta>文件夹
+     * 创建每一行数据对应的元数据文件
+     * 保存元数据文件，并以表格第一列作为名称 */
+
+    ui->pushButtonMake->setEnabled(false);
+
+    QString metaPath = QDir::currentPath() + "/Meta";
+    QDir metaDir(metaPath);
+    if(metaDir.exists()){//若文件夹已经存在就删除掉
+        if(!metaDir.removeRecursively()){
+            QMessageBox::information(this,"提示","已存在的Meta文件夹无法删除");
+            ui->pushButtonMake->setEnabled(true);
+            return;
+        }
+    }
+
+    if(!metaDir.mkdir(metaPath)){//无论文件夹存在与否，都需要创建新文件夹
+        QMessageBox::information(this,"提示","无法创建Meta目录");
+        ui->pushButtonMake->setEnabled(true);
+        return;
+    }
+
+    makeJson(MetaModel,metaPath);
+    ui->pushButtonMake->setEnabled(true);
 
 }
 

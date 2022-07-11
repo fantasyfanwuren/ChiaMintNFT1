@@ -17,6 +17,8 @@ class MainWindow : public QMainWindow
 private:
     void sleep(int sec);
     void readCSV(const QString & path);
+    void makeJson(QStandardItemModel * theModel,const QString &path);
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -25,6 +27,8 @@ private slots:
     void on_pushButtonUUID_clicked();
 
     void on_pushButtonCSV_clicked();
+
+    void on_pushButtonMake_clicked();
 
 private:
     Ui::MainWindow *ui;
