@@ -14,7 +14,7 @@
 ③回到我们的软件，然后粘贴到“UUID”标签对应的文本框内。
 
 二、元数据CSV设置
-①关于如何生成元数据CSV，可以去看我之前的视频教程：https://www.bilibili.com/video/BV1Ga411X7fA?share_source=copy_web
+①关于如何生成元数据CSV，可以去另外一位开源作者的视频教程：https://www.bilibili.com/video/BV1C44y1j7xg?share_source=copy_web
 ②生成CSV是用到了另外一个开源作者的NFT图片合成软件：https://github.com/Jianghuchengphilip/Generate-NFT.git
 ③完成上述步骤后，点击”元数据CSV设置“标签对应的“选择文件”按钮，选中我们生成的CSV文件即可。
 ④以上设置后，本软件会自动读取元数据CSV文件，并在生成信息中体现CSV文件中的所有内容，同时增加了“运行状态”列：待生成。

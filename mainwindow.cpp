@@ -269,11 +269,24 @@ void MainWindow::on_pushButtonMetaHelp_clicked()
 {
     QString path =":/help/MetaHelp.txt";
     QFile file(path);
-    qDebug()<<file;
-    if(file.exists()){
-        QDesktopServices::openUrl(QUrl::fromLocalFile(path));//支持中文路径
-    }else{
-        QMessageBox::information(this,"提示","打开帮助失败");
+    if(!file.exists()){
+        QMessageBox::information(this,"提示","未找到MetaHelp帮助文档");
+        return;
     }
+    if(!file.open(QIODevice::ReadOnly|QIODevice::Text)){
+        QMessageBox::information(this,"提示","MetaHelp帮助文档打开失败");
+        return;
+    }
+    QString helpText = file.readAll();
+    file.close();
+    dialogMetaHelp = new DialogMetaHelp;
+    dialogMetaHelp->setAttribute(Qt::WA_DeleteOnClose);
+    //Qt::WindowFlags flags = dialogMetaHelp->windowFlags();
+    //dialogMetaHelp->setWindowFlags(flags|Qt::WindowStaysOnTopHint);
+    dialogMetaHelp->setText(helpText);
+    dialogMetaHelp->show();
+
+
+
 }
 

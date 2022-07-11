@@ -10,10 +10,14 @@ class DialogMetaHelp;
 class DialogMetaHelp : public QDialog
 {
     Q_OBJECT
-
+public:
+    void setText(const QString &text);
 public:
     explicit DialogMetaHelp(QWidget *parent = nullptr);
     ~DialogMetaHelp();
+
+private slots:
+    void on_pushButton_2_clicked();
 
 private:
     Ui::DialogMetaHelp *ui;

@@ -6,9 +6,22 @@ DialogMetaHelp::DialogMetaHelp(QWidget *parent) :
     ui(new Ui::DialogMetaHelp)
 {
     ui->setupUi(this);
+    setWindowTitle("Meta帮助文档");
+
 }
 
 DialogMetaHelp::~DialogMetaHelp()
 {
     delete ui;
 }
+
+void DialogMetaHelp::setText(const QString &text)
+{
+    ui->plainTextEdit->setPlainText(text);
+}
+
+void DialogMetaHelp::on_pushButton_2_clicked()
+{
+    close();
+}
+

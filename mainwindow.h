@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "dialogmetahelp.h"
 
 class QStandardItemModel;
 class QJsonObject;
@@ -40,6 +41,7 @@ private:
     Ui::MainWindow *ui;
     QStandardItemModel *MetaModel;
     QStandardItemModel *MintModel;
+    DialogMetaHelp * dialogMetaHelp = NULL;
 
 };
 #endif // MAINWINDOW_H
