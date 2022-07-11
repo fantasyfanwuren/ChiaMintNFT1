@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QFile>
+#include <QStandardItemModel>
 
 QString version = "V1.0";
 
@@ -57,17 +58,31 @@ void MainWindow::readCSV(const QString & path)
     /* 读取Meta.csv文件
      * 将其内容提取到ui->tableViewMeta中 */
 
+    MetaModel = new QStandardItemModel;
+    QStandardItem * tempItem;
     QFile file(path);
     if(file.open(QIODevice::ReadOnly)){
         QTextStream out(&file);
-        QStringList LineText = out.readAll().split('\n');
+        QStringList LineText = out.readAll().split("\r\n");//读取每一行
         LineText.removeLast();
         for(int i=0;i<LineText.count();++i){
-            QStringList text = LineText.at(i).split(',');
-            qDebug()<<text;
-            qDebug()<<"休息。。。。。。。。。。。。。。。。";
+            QStringList text = LineText.at(i).split(',');//将每一行分开
+            if(i==0){//设置表头
+                text<<"运行状况";
+                MetaModel->setHorizontalHeaderLabels(text);
+            }else{//设置表格内容
+                text<<"待生成";
+                for(int j=0;j<text.count();++j){
+                    tempItem = new QStandardItem(text.at(j));
+                    MetaModel->setItem(i-1,j,tempItem);
+                }
+            }
         }
     }
+
+    ui->tableViewMeta->setModel(MetaModel);
+    ui->tableViewMeta->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
 
 
 

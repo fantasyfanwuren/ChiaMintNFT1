@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class QStandardItemModel;
+
 extern QString version;
 
 QT_BEGIN_NAMESPACE
@@ -26,5 +28,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QStandardItemModel *MetaModel;
+    QStandardItemModel *MintModel;
+
 };
 #endif // MAINWINDOW_H
