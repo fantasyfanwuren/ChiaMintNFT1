@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 class QStandardItemModel;
+class QJsonObject;
 
 extern QString version;
 
@@ -17,7 +18,8 @@ class MainWindow : public QMainWindow
 private:
     void sleep(int sec);
     void readCSV(const QString & path);
-    void makeJson(QStandardItemModel * theModel,const QString &path);
+    void makeJson(int row,const QString &path);
+    void saveJsonFile(const QJsonObject &obj, const QString &path);
 
 public:
     MainWindow(QWidget *parent = nullptr);

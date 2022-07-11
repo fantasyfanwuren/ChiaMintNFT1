@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QStandardItemModel>
+#include <QJsonObject>
+#include <QJsonArray>
 
 QString version = "V1.0";
 
@@ -103,13 +105,92 @@ void MainWindow::on_pushButtonCSV_clicked()
 
 }
 
+void saveJsonFile(const QJsonObject &obj, const QString &path)
+{
+    qDebug()<<obj;
+    qDebug()<<path;
+}
 
-void MainWindow::makeJson(QStandardItemModel * theModel,const QString &path)
+void MainWindow::makeJson(int row,const QString &path)
 {
     /* 将gui中的meta表格生成json文件
      * 保存在path文件夹中*/
-    //qDebug()<<theModel;
-    qDebug()<<path;
+
+    QJsonObject obj{
+        {"format", "CHIP-0007"},
+    };
+    //"name": "Chia Friends #1",
+    QString name = ui->lineEditName->text()+
+            " #"+MetaModel->item(row,0)->text();
+    obj.insert("name",name);
+
+    //"description": "10,000 eco-bit NFTs on Chia, from Chia."
+    QString description = ui->lineEditDescription->text();
+    obj.insert("description",description);
+
+    // "sensitive_content": false
+    obj.insert("sensitive_content",false);
+
+    //"collection": {}
+    QJsonObject collection;
+        //"name": "Chia Friends", "id": "517B1E97-F1AF-4824-A7B9-8D85E281D7B8",
+    collection.insert("name",ui->lineEditName->text());
+    collection.insert("id",ui->lineEditUUID->text());
+        //"attributes": []
+    QJsonArray attributes{
+        QJsonObject{
+            {"type","description"},
+            {"value",description}
+        }
+    };
+    QString website = ui->lineEditWebsite->text();
+    QString discord = ui->lineEditDiscord->text();
+    QString twitter = ui->lineEditTwitter->text();
+
+    if(!website.isEmpty()){
+        QJsonObject websiteObj{
+            {"type","website"},
+            {"value",website}
+        };
+        attributes.append(websiteObj);
+    }
+
+    if(!discord.isEmpty()){
+        QJsonObject discordObj{
+            {"type","discord"},
+            {"value",discord}
+        };
+        attributes.append(discordObj);
+    }
+
+    if(!twitter.isEmpty()){
+        QJsonObject twitterObj{
+            {"type","twitter"},
+            {"value",twitter}
+        };
+        attributes.append(twitterObj);
+    }
+
+    collection.insert("attributes",attributes);
+    obj.insert("collection",collection);
+
+    //"attributes": []
+    QJsonArray theAttributes;
+    /* 在attributes中添加每个用户自定义属性，
+     * 首先获取表头
+     * 再获取所在行的内容 */
+    for(int i=1;i<MetaModel->columnCount()-1;++i){
+        QString trait_type = MetaModel->horizontalHeaderItem(i)->text();
+        QString value = MetaModel->item(row,i)->text();
+        QJsonObject tempObj{
+            {"trait_type",trait_type},
+            {"value",value}
+        };
+        theAttributes.append(tempObj);
+    }
+    obj.insert("attributes",theAttributes);
+
+    saveJsonFile(obj,path);
 
 }
 
@@ -137,7 +218,7 @@ void MainWindow::on_pushButtonMake_clicked()
         return;
     }
 
-    makeJson(MetaModel,metaPath);
+    makeJson(1,metaPath);
     ui->pushButtonMake->setEnabled(true);
 
 }
