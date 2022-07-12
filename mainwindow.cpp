@@ -212,7 +212,9 @@ void MainWindow::on_pushButtonMake_clicked()
 {
     /* 在程序所在目录创建一个<Meta>文件夹
      * 创建每一行数据对应的元数据文件
-     * 保存元数据文件，并以表格第一列作为名称 */
+     * 保存元数据文件，并以表格第一列作为名称
+     * 在成语所在目录创建一个<License>文件夹
+     * 创建License.txt,并根据模板修改 */
 
     ui->pushButtonMake->setEnabled(false);
 
@@ -232,7 +234,7 @@ void MainWindow::on_pushButtonMake_clicked()
         ui->pushButtonMake->setEnabled(true);
         return;
     }
-
+    int failNumber = 0;
     for(int i=0;i<MetaModel->rowCount();++i){
         QString savePath = metaPath + QString::asprintf("/%d,json",i);
         QStandardItem * tempitem = MetaModel->item(i,MetaModel->columnCount()-1);
@@ -240,13 +242,60 @@ void MainWindow::on_pushButtonMake_clicked()
             tempitem->setText("成功");
         }else{
             tempitem->setText("失败");
+            failNumber++;
         }
     }
+    if(failNumber==0 and makeLicense()){
+        QMessageBox::information(this,"提示","元数据Json与许可证Json生成已完成");
+    }else{
+        QMessageBox::information(this,"警告","元数据Json与许可证Json生成过程存在失败情况");
+    }
+
     ui->pushButtonMake->setEnabled(true);
     ui->pushButtonResult->setEnabled(true);
 
 }
+bool MainWindow::makeLicense()
+{
+    QString licensePath = QDir::currentPath() + "/License";
+    QDir licenseDir(licensePath);
+    if(licenseDir.exists()){//若文件夹已经存在就删除掉
+        if(!licenseDir.removeRecursively()){
+            QMessageBox::information(this,"提示","已存在的License文件夹无法删除");
+            ui->pushButtonMake->setEnabled(true);
+            return false;
+        }
+    }
 
+    if(!licenseDir.mkdir(licensePath)){//无论文件夹存在与否，都需要创建新文件夹
+        QMessageBox::information(this,"提示","无法创建License目录");
+        ui->pushButtonMake->setEnabled(true);
+        return false;
+    }
+
+    QString licenseTextPath = licensePath +"/License.txt";
+    QFile licensefile(licenseTextPath);
+    QFile licensefileTemplate(":/License/License.txt");
+    if(!licensefileTemplate.open(QIODevice::ReadOnly|QIODevice::Text)){
+        QMessageBox::information(this,"提示","获取许可证模板失败");
+        return false;
+    }
+    QString templateText = licensefileTemplate.readAll();
+    licensefileTemplate.close();
+
+    QString licenseText = templateText.replace("MyNFTNAME"
+                                               ,ui->lineEditName->text());
+
+
+    if(!licensefile.open(QIODevice::WriteOnly|QIODevice::Text)){
+        QMessageBox::information(this,"提示","创建许可证文件失败");
+        return false;
+    }
+    QTextStream tempStream(&licensefile);
+    tempStream<<licenseText;
+    licensefile.close();
+    return true;
+}
 
 void MainWindow::on_pushButtonResult_clicked()
 {
@@ -285,8 +334,5 @@ void MainWindow::on_pushButtonMetaHelp_clicked()
     //dialogMetaHelp->setWindowFlags(flags|Qt::WindowStaysOnTopHint);
     dialogMetaHelp->setText(helpText);
     dialogMetaHelp->show();
-
-
-
 }
 

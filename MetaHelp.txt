@@ -15,7 +15,7 @@
 
 二、元数据CSV设置
 ①关于如何生成元数据CSV，可以去另外一位开源作者的视频教程：https://www.bilibili.com/video/BV1C44y1j7xg?share_source=copy_web
-②生成CSV是用到了另外一个开源作者的NFT图片合成软件：https://github.com/Jianghuchengphilip/Generate-NFT.git
+②生成CSV是用到了该开源作者的NFT图片合成软件：https://github.com/Jianghuchengphilip/Generate-NFT.git
 ③完成上述步骤后，点击”元数据CSV设置“标签对应的“选择文件”按钮，选中我们生成的CSV文件即可。
 ④以上设置后，本软件会自动读取元数据CSV文件，并在生成信息中体现CSV文件中的所有内容，同时增加了“运行状态”列：待生成。
 
@@ -26,7 +26,7 @@
 官网是一套有诚意的NFT作品的必须品，在官网里面可以容纳整套NFT作品的世界观和未来规划，是一套NFT的门面。
 
 五、推特（可以为空，但不建议）
-推特方便NFT创作者及时高效的将重大消息发送个NFT的持有者。
+推特方便NFT创作者及时高效地将重大消息发送个NFT的持有者。
 
 六、discord（可以为空，但不建议）
 discord是NFT社区打造最重要的工具，在discord中你可以邀请各种机器人帮助你管理你的社区，比如空投，比如邀请奖励，比如投票治理，如果你还不知道如何打造一个discord服务器，可以看我之前的视频教程：https://www.bilibili.com/video/BV1JZ4y1q7AQ?share_source=copy_web
@@ -36,4 +36,9 @@ discord是NFT社区打造最重要的工具，在discord中你可以邀请各种
 
 八、以上这些全部设置完成后，就可以点击“生成”按钮了，因为采用了C++语言编写，所以速度是杠杠滴，1-2秒就可以完成几千个。完成后，可以看到“生成信息”中的“运行状态”列全部会变成“成功”。
 
-九、点击查看结果，可以自动跳转到所有元数据json文件所在的目录，然后可以开始准备下一步的操作了：铸造。
+九、点击查看结果，可以自动跳转到所有元数据json文件所在的目录。
+
+十、返回到软件根目录，打开License文件夹，里面有本软件为用户自动生成的许可证。
+
+十一、确认生成无误后，请将Meta文件夹和License文件夹及时上传到https://nft.storage/,文件夹必须用客户端传，这样方便后面的批量铸造操作，
+客户端地址：https://nft.storage/docs/how-to/nftup/

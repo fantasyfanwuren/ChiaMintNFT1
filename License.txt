@@ -1,0 +1,109 @@
+
+
+                                                                      MyNFTNAME  NFT License Agreement
+
+This Agreement is a legally binding agreement between you and the MyNFTNAME NFTs team that describes the rights in Artwork 
+you may obtain when you purchase or receive any MyNFTNAME NFT. For clarity, 
+this Agreement does not otherwise govern the transaction that is effectuated on the Chia blockchain when you buy or offer to
+buy any MyNFTNAME NFT, including through any related decentralized technologies, websites, services, tools, applications, smart 
+contracts, and APIs, which are provided by third party vendors and governed by and subject to the terms of use provided by 
+those third party vendors, unless such third party terms of use conflict or are inconsistent with the terms of this Agreement, in 
+which case the terms of this Agreement shall prevail. Subject to the foregoing, this Agreement supplements the terms of 
+service and privacy policy that otherwise govern your use of the Chia websites, services and application. By accepting 
+ownership of the MyNFTNAME NFT, you agree to abide by the terms of this Agreement.
+
+1. Definitions
+1.1 "MyNFTNAME  NFT" means a unique Chia blockchain-tracked, non-fungible token that serves as a digital collectible and was 
+originally created by MyNFTNAME  team.
+1.2 “Artwork” means the original artwork that was minted as a MyNFTNAME  NFT.
+1.3 “NFT Marketplace” means any third party vendors that facilitates buying, selling or trading of MyNFTNAME  NFTs.
+1.4 “Chia Offers” means buying, selling or trading MyNFTNAME  NFTs via the Offers feature that allows buyers and sellers to 
+seamlessly create and accept trade offers all from the privacy of their Chia wallet. Offers allow two people who 
+have never met to propose and complete a trade in a way that neither side can cheat and does not need escrow.
+1.5 “Own” or “Owned” means a MyNFTNAME  NFT that (a) you originally purchased/received from Chia or from an NFT
+Marketplace; or (b) purchased/received on an NFT Marketplace from a legitimate owner of that MyNFTNAME  NFT; or (c) 
+purchased/received through Chia Offers from a legitimate owner of that MyNFTNAME  NFT.
+1.6 “Third Party IP” means any third-party copyrights, trademarks, patent rights (including, without limitation, patent
+applications and disclosures), trade secrets, know-how or any other intellectual property rights recognized in any 
+country or jurisdiction in the world.
+2. License
+Subject to your compliance with the terms of this Agreement, MyNFTNAME  team hereby grants you a worldwide, non- exclusive, 
+personal, limited license to display the Artwork associated with any MyNFTNAME  NFT(s) that you Own, privately or publicly, 
+solely for personal, non-commercial purposes, including on social media platforms, digital galleries, or otherwise on
+the Internet or in association with your offer to sell or trade your MyNFTNAME  NFT(s). This license does not grant you any
+rights in or to the Artwork separate from the associated NFT(s), including any of the copyrights described in Section 4 
+of this Agreement.
+3. Restrictions
+You agree that you may not, and will not permit any third party to, do or attempt to do any of the following without 
+MyNFTNAME  team’s express prior written consent in each case: (i) modify the Artwork associated with your MyNFTNAME  NFT(s) in any 
+way; (ii) use the Artwork to advertise, market, or sell any product or service; (iii) use the Artwork in connection with 
+malicious, harmful, offensive or obscene images, videos, or other materials or forms of media, including any that depict
+hatred, intolerance, violence, cruelty, or anything else that could reasonably be found to constitute hate speech or
+otherwise violate applicable laws or regulations or infringe upon the rights of others; (iv) attempt to mint, tokenize, or
+create an additional cryptographic token representing the Artwork on any platform; (v) use or incorporate the Artwork 
+in movies, videos, video games, or any other forms of media for a commercial purpose; (vi) sell, distribute for 
+commercial gain, or otherwise commercialize merchandise that includes, contains, or consists of the Artwork; (vii) 
+otherwise commercially use or exploit any Artwork for your or any third party’s benefit, including by selling copies of 
+any Artwork or selling derivative works embodying any Artwork; (viii) trademark, copyright, or seek to trademark, 
+copyright, or otherwise acquire additional intellectual property rights in or to the Artwork, including any MyNFTNAME  NFT name, 
+trademark, logo, trade dress, or other source indicators contained or depicted therein; (ix) falsify, misrepresent, or 
+conceal the authorship of the Artwork or the MyNFTNAME  NFT.
+4. Ownership
+You acknowledge and agree that MyNFTNAME  team(or, as applicable, its licensors) owns all legal right, title and interest in and to 
+the Artwork, and all intellectual property rights therein. The rights that you have in and to the Artwork are limited to 
+those expressly described in Section 2 of this Agreement. MyNFTNAME  team(on behalf of itself and, as applicable, its licensors)
+reserves all other rights in and to the Artwork, including all copyrights in and to the Artwork (e.g., the right to prepare 
+derivate works, to reproduce and make copies, to distribute, sell, or transfer, to display, to perform, and to publicly 
+display and publicly perform)
+5. License Term
+The license granted in Section 2 of this Agreement applies only to the extent that you continue to Own the applicable 
+MyNFTNAME  NFT. If at any time you sell, trade, donate, give away, or transfer your MyNFTNAME  NFT to a new Owner through an NFT
+Marketplace or Chia Offers, the license granted in Section 2 shall be transferred to that new Owner, and you will have 
+no further rights in or to the MyNFTNAME  NFT or Artwork associated with that MyNFTNAME  NFT. If at any time you burn or otherwise
+dispose of your MyNFTNAME  NFT for any reason, or sell, trade, donate, give away, or transfer your MyNFTNAME  NFT other than
+through an NFT Marketplace or Chia Offers, the license granted in Section 2 of this Agreement will immediately 
+expire with respect to that MyNFTNAME  NFT without the requirement of notice or any further action, and you will have no 
+further rights in or to the MyNFTNAME  NFT or Artwork associated with that MyNFTNAME  NFT.
+6. Indemnification
+You shall indemnify, defend and hold harmless MyNFTNAME  team，its affiliates and licensors, and its and their respective officers, 
+agents, directors, representatives, contractors, and employees, from and against any and all claims, suits, demands, 
+actions, losses, liabilities, damages, judgements, penalties, fines, expenses and other costs (including reasonable 
+attorneys’ fees) arising from your breach or alleged breach of this Agreement. MyNFTNAME  team will also have the right to provide 
+our own defense additionally or alternatively at our own expense.
+7. Limitation of Liability
+In no event will MyNFTNAME  team be liable to you for any special, incidental, exemplary, indirect, punitive, or consequential 
+damages (including loss of profits) with respect to the subject matter of this Agreement, whether such liability arises 
+from any claim based upon contract, warranty, tort (including negligence), strict liability or otherwise, and whether or 
+not you have been advised of the possibility of such loss or damage. MyNFTNAME  team’s aggregate liability under this Agreement 
+shall not exceed the net revenues actually received by MyNFTNAME  team in connection with any transaction in which you purchased
+or sold your MyNFTNAME  NFT. The foregoing limitation of liability shall only apply to the extent permitted by applicable law. 
+In no event will MyNFTNAME  team be liable for any inability for you to access the Artwork for any reason, including as a result of 
+any downtime, failure, obsolescence, removal, termination or other disruption relating to (a) the servers upon which 
+the Artwork is stored; (b) any other NFT platform or marketplace.
+8. Assignment
+MyNFTNAME  team will have the unrestricted right to assign this Agreement and to assign, subcontract, license and sublicense any or 
+all of its rights and obligations hereunder. This Agreement (including, without limitation, the license granted
+hereunder) is personal to you and shall not be assigned or transferred by you, except to a new Owner of the MyNFTNAME  NFT 
+as set forth in Section 5 above. Any other attempt by you to assign, sub-license, or transfer your rights under this 
+Agreement shall be null and void.
+9. Dispute Resolution 
+This Agreement will be governed by, and construed and interpreted in accordance with, the laws of the State of 
+California, Unites States, without regard to its conflicts-of-law principles. Any dispute arising out of or relating to this 
+Agreement may be brought and adjudicated only in the courts, federal or state, located in the County of Santa Clara, 
+State of California, and MyNFTNAME  team and you submit to the exclusive jurisdiction of such courts and waive any objections based 
+upon improper venue or inconvenient forum. Neither MyNFTNAME  team nor you will seek to litigate any claims against the other on 
+a class action or representative party basis and shall pursue any claims solely on an individual basis.
+10. Remedies
+Your rights and remedies in the event of any breach of this Agreement are strictly limited to the right, if any, to recover 
+damages in an action at law, and you acknowledge that your remedy of money damages is adequate. You will not be
+entitled by reason of any such breach, and you will not seek, any equitable relief, whether injunctive or otherwise.
+11. Miscellaneous Terms
+This Agreement constitutes the complete understanding and agreement of you and MyNFTNAME  team with respect to the Artworks
+and supersedes any and all prior or contemporaneous written or oral agreements between you and MyNFTNAME  team with respect to 
+all Artworks. Prior agreements between MyNFTNAME  team and you relating to any artwork(s) will continue to govern those prior 
+artwork(s). The language of any clause or term of this Agreement will not be construed for or against the drafter. No 
+right or term of this Agreement will be deemed waived, and no breach of this Agreement excused, unless the waiver or 
+consent is in writing and signed by you and MyNFTNAME  team.Any modification or amendment to this Agreement must be made in 
+writing and signed by you and MyNFTNAME  team.
+
+

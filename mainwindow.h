@@ -21,6 +21,7 @@ private:
     void readCSV(const QString & path);
     bool makeJson(int row,const QString &path);
     bool saveJsonFile(const QJsonObject &obj, const QString &path);
+    bool makeLicense();
 
 public:
     MainWindow(QWidget *parent = nullptr);

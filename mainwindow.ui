@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>916</width>
-    <height>749</height>
+    <width>980</width>
+    <height>833</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabMetaData">
        <attribute name="title">
@@ -38,7 +38,7 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>413</width>
+               <width>445</width>
                <height>20</height>
               </size>
              </property>
@@ -69,7 +69,7 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>413</width>
+               <width>445</width>
                <height>20</height>
               </size>
              </property>
@@ -242,7 +242,7 @@
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>517</width>
+            <width>581</width>
             <height>20</height>
            </size>
           </property>
@@ -271,8 +271,71 @@
        <attribute name="title">
         <string>铸造</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="2" column="0" colspan="4">
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="2" column="0" colspan="3">
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="title">
+           <string>链接获取</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QLabel" name="label_11">
+               <property name="text">
+                <string>图片集链接</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditPictureLink">
+               <property name="placeholderText">
+                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>元数据josn集链接</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditMetaLink">
+               <property name="placeholderText">
+                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <item>
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>许可证集链接</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditLicenceLink">
+               <property name="placeholderText">
+                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="3">
          <widget class="QGroupBox" name="groupBox_5">
           <property name="title">
            <string>其他设置</string>
@@ -303,7 +366,7 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>240</width>
+               <width>257</width>
                <height>20</height>
               </size>
              </property>
@@ -334,7 +397,7 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>240</width>
+               <width>257</width>
                <height>20</height>
               </size>
              </property>
@@ -371,7 +434,7 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>240</width>
+               <width>257</width>
                <height>20</height>
               </size>
              </property>
@@ -434,7 +497,41 @@
           </layout>
          </widget>
         </item>
-        <item row="2" column="4">
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButtonMintHelp">
+          <property name="text">
+           <string>帮助文档</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="pushButtonMetaVideo">
+          <property name="text">
+           <string>视频教程</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2" colspan="2">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>365</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="4" column="4">
+         <widget class="QPushButton" name="pushButtonMint">
+          <property name="text">
+           <string>开始铸造</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3" rowspan="2" colspan="2">
          <widget class="QGroupBox" name="groupBox_6">
           <property name="title">
            <string>铸造信息</string>
@@ -446,34 +543,7 @@
           </layout>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButtonMintHelp">
-          <property name="text">
-           <string>帮助文档</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="pushButtonMetaVideo">
-          <property name="text">
-           <string>视频教程</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>337</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0" colspan="5">
+        <item row="1" column="0" colspan="5">
          <widget class="QGroupBox" name="groupBox_3">
           <property name="title">
            <string>本地文件获取</string>
@@ -557,74 +627,34 @@
           </layout>
          </widget>
         </item>
-        <item row="1" column="0" colspan="5">
-         <widget class="QGroupBox" name="groupBox_4">
+        <item row="0" column="0" colspan="5">
+         <widget class="QGroupBox" name="groupBox_7">
           <property name="title">
-           <string>链接获取</string>
+           <string>环境配置</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_6">
+          <layout class="QGridLayout" name="gridLayout_5">
            <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <layout class="QHBoxLayout" name="horizontalLayout_19">
              <item>
-              <widget class="QLabel" name="label_11">
+              <widget class="QLabel" name="label_20">
                <property name="text">
-                <string>图片集链接</string>
+                <string>Chia deamon</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEditPictureLink">
-               <property name="placeholderText">
-                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
-               </property>
-              </widget>
+              <widget class="QLineEdit" name="lineEdit"/>
              </item>
-            </layout>
-           </item>
-           <item row="1" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_12">
              <item>
-              <widget class="QLabel" name="label_12">
+              <widget class="QPushButton" name="pushButton">
                <property name="text">
-                <string>元数据josn集链接</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditMetaLink">
-               <property name="placeholderText">
-                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_13">
-             <item>
-              <widget class="QLabel" name="label_13">
-               <property name="text">
-                <string>许可证集链接</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditLicenceLink">
-               <property name="placeholderText">
-                <string>https://bafybeifaqsw5ptfmrsf6mhgoifbuefaptlbqnsau3tatgkva4ltm4fv2ge.ipfs.nftstorage.link/</string>
+                <string>选择文件夹</string>
                </property>
               </widget>
              </item>
             </layout>
            </item>
           </layout>
-         </widget>
-        </item>
-        <item row="3" column="4">
-         <widget class="QPushButton" name="pushButtonMint">
-          <property name="text">
-           <string>开始铸造</string>
-          </property>
          </widget>
         </item>
        </layout>
@@ -638,7 +668,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>916</width>
+     <width>980</width>
      <height>25</height>
     </rect>
    </property>

@@ -1,6 +1,11 @@
 <RCC>
     <qresource prefix="/help"/>
-    <qresource lang="CH" prefix="/help">
+    <qresource prefix="/help" lang="CH">
         <file>MetaHelp.txt</file>
+    </qresource>
+    <qresource prefix="/License" lang="EN"/>
+    <qresource prefix="/License" lang="En"/>
+    <qresource prefix="/License" lang="English">
+        <file>License.txt</file>
     </qresource>
 </RCC>
