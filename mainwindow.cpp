@@ -389,7 +389,7 @@ void MainWindow::on_pushButtonNFTID_clicked()
         QMessageBox::information(this,"警告","必须设置钱包指纹才能使用该功能！");
         return;
     }
-    QProcess process(0);
+    QProcess process(this);
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     process.setWorkingDirectory(ui->lineEditDeamon->text());
     QStringList arg;
