@@ -257,6 +257,7 @@ void MainWindow::on_pushButtonMake_clicked()
 }
 bool MainWindow::makeLicense()
 {
+
     QString licensePath = QDir::currentPath() + "/License";
     QDir licenseDir(licensePath);
     if(licenseDir.exists()){//若文件夹已经存在就删除掉
@@ -334,5 +335,69 @@ void MainWindow::on_pushButtonMetaHelp_clicked()
     //dialogMetaHelp->setWindowFlags(flags|Qt::WindowStaysOnTopHint);
     dialogMetaHelp->setText(helpText);
     dialogMetaHelp->show();
+}
+
+
+void MainWindow::on_pushButtonDeamon_clicked()
+{
+    QString deamonPath = QFileDialog::getExistingDirectory(this,"选择文件夹","");
+    if(deamonPath.isEmpty()){
+        return;
+    }
+    ui->lineEditDeamon->setText(deamonPath);
+}
+
+
+
+void MainWindow::on_pushButtonPictureFile_clicked()
+{
+    QString picturePath = QFileDialog::getExistingDirectory(this,"选择文件夹","");
+    if(!picturePath.isEmpty())
+        ui->lineEditPictureFile->setText(picturePath);
+}
+
+
+
+void MainWindow::on_pushButtonMetaFile_clicked()
+{
+    QString metaPath = QFileDialog::getExistingDirectory(this,"选择文件夹","");
+    if(!metaPath.isEmpty())
+        ui->lineEditMetaFile->setText(metaPath);
+}
+
+
+void MainWindow::on_pushButtonLicenceFile_clicked()
+{
+    QString licensePath = QFileDialog::getExistingDirectory(this,"选择文件夹","");
+    if(!licensePath.isEmpty())
+        ui->lineEditLicenceFile->setText(licensePath);
+}
+
+
+void MainWindow::on_pushButtonNFTID_clicked()
+{
+    /* 首先确认用户是否设置了环境和指纹
+     * 然后执行 chia wallet show 指令
+     * 过程中可能需要选择钱包，需要考虑这一点。*/
+    QString finger = ui->lineEditFinger->text();
+    QString deamonPath = ui->lineEditDeamon->text();
+    if(deamonPath.isEmpty()){
+        QMessageBox::information(this,"警告","必须设置Chia deamon才能使用该功能！");
+        return;
+    }
+    if(finger.isEmpty()){
+        QMessageBox::information(this,"警告","必须设置钱包指纹才能使用该功能！");
+        return;
+    }
+    QProcess process(0);
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    process.setWorkingDirectory(ui->lineEditDeamon->text());
+    QStringList arg;
+    process.start("cmd.exe", arg<<"/c"<<"chia wallet show"<<"-f"<<ui->lineEditFinger->text());
+    process.waitForStarted();
+    process.waitForFinished();
+    QMessageBox::information(this,"信息提醒",QString::fromLocal8Bit(process.readAllStandardOutput()));
+    process.kill();
+
 }
 

@@ -38,6 +38,16 @@ private slots:
 
     void on_pushButtonMetaHelp_clicked();
 
+    void on_pushButtonDeamon_clicked();
+
+    void on_pushButtonPictureFile_clicked();
+
+    void on_pushButtonMetaFile_clicked();
+
+    void on_pushButtonLicenceFile_clicked();
+
+    void on_pushButtonNFTID_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *MetaModel;
