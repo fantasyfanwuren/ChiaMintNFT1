@@ -238,7 +238,7 @@ void MainWindow::on_pushButtonMake_clicked()
     }
     int failNumber = 0;
     for(int i=0;i<MetaModel->rowCount();++i){
-        QString savePath = metaPath + QString::asprintf("/%d,json",i);
+        QString savePath = metaPath + QString::asprintf("/%d.json",i);
         QStandardItem * tempitem = MetaModel->item(i,MetaModel->columnCount()-1);
         if(makeJson(i,savePath)){
             tempitem->setText("成功");
@@ -401,11 +401,11 @@ void MainWindow::on_pushButtonNFTID_clicked()
 
 void MainWindow::on_downLoadPercentage(qint64 bytesReceived,qint64 bytesTotal,int row ,int column)
 {
-    float percentageF = bytesReceived/bytesTotal;
-    QString percentage = QString::asprintf("%.2f",percentageF);
+    Q_UNUSED(bytesTotal);
     //QStandardItem *item = new QStandardItem("正在下载："+percentage);
+    qDebug()<<"gui bytesReceived"<<bytesReceived;
     QStandardItem *item = MintModel->item(row,column);
-    item->setText("正在下载："+percentage);
+    item->setText("正在下载："+QString::number(bytesReceived));
 }
 
 void MainWindow::on_downLoadfinished(int row,int column)
@@ -517,9 +517,16 @@ void MainWindow::on_pushButtonMakeCLI_clicked()
 
     //信号与槽的链接，用于gui的显示
     MintModel = new QStandardItemModel;
-    MintModel->setRowCount(metaList.count());
     MintModel->setHorizontalHeaderLabels(
                 QStringList()<<"图片名称"<<"图片哈希"<<"元数据哈希"<<"许可证哈希"<<"执行");
+    for(int i=0;i<pictureList.count();++i){
+        QStandardItem *theItem = new QStandardItem(pictureList.at(i));
+        MintModel->setItem(i,0,theItem);
+        for(int j=1;j<=4;j++){
+            QStandardItem *aItem = new QStandardItem("");
+            MintModel->setItem(i,j,aItem);
+        }
+    }
     ui->tableViewMint->setModel(MintModel);
     ui->tableViewMint->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(cmd,SIGNAL(downLoadPercentage(qint64,qint64,int,int))

@@ -196,6 +196,7 @@ void CMDCommand::on_finished()
         arg<<"-lh"<<sha256;
     }
     reply->deleteLater();
+    downLoadState = false;
 }
 
 void CMDCommand::wait(int sec)
@@ -227,7 +228,8 @@ bool CMDCommand::downLoad(const QString & urlSpace)
         emit downFail(currentRow,currentColumn);
         return false;
     }
-    downLoadState = false;
+    qDebug()<<urlSpace;
+    downLoadState = true;
     reply = networkManager.get(QNetworkRequest(newUrl));
     connect(reply,SIGNAL(finished()),this,SLOT(on_finished()));
     connect(reply,SIGNAL(downloadProgress(qint64, qint64))
@@ -240,9 +242,11 @@ bool CMDCommand::downLoad(const QString & urlSpace)
             }
             if(i==timeout-1){
                 emit downFail(currentRow,currentColumn);
+                downLoadState = false;
                 return false;
             }
     }
+
     return true;
 
 }
