@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>980</width>
-    <height>837</height>
+    <width>977</width>
+    <height>765</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -271,7 +271,96 @@
        <attribute name="title">
         <string>铸造</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_10">
+       <layout class="QGridLayout" name="gridLayout_18">
+        <item row="0" column="0" colspan="3">
+         <widget class="QGroupBox" name="groupBox_7">
+          <property name="title">
+           <string>环境配置</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_19">
+             <item>
+              <widget class="QLabel" name="label_20">
+               <property name="text">
+                <string>Chia deamon</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditDeamon"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonDeamon">
+               <property name="text">
+                <string>选择文件夹</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>本地文件获取</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>图片集合</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditPictureFile">
+               <property name="placeholderText">
+                <string>D:\programs\myNFT\Generate-NFT-main\Generate-NFT\output\edition test001\images</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonPictureFile">
+               <property name="text">
+                <string>选择文件夹</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>元数据josn集合</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditMetaFile">
+               <property name="placeholderText">
+                <string>C:\Users\lenovo\Desktop\ChiaMintNFT1\Meta</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonMetaFile">
+               <property name="text">
+                <string>选择文件夹</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
         <item row="2" column="0" colspan="3">
          <widget class="QGroupBox" name="groupBox_4">
           <property name="title">
@@ -319,7 +408,7 @@
              <item>
               <widget class="QLabel" name="label_13">
                <property name="text">
-                <string>许可证集链接</string>
+                <string>许可证链接</string>
                </property>
               </widget>
              </item>
@@ -524,134 +613,40 @@
          </spacer>
         </item>
         <item row="4" column="4">
-         <widget class="QPushButton" name="pushButtonMint">
+         <widget class="QPushButton" name="pushButtonMakeCLI">
           <property name="text">
-           <string>开始铸造</string>
+           <string>生成指令</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="3" rowspan="2" colspan="2">
+        <item row="4" column="5">
+         <widget class="QPushButton" name="pushButtonMintCheckCLI">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>检查指令</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="6">
+         <widget class="QPushButton" name="pushButtonMint">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>执行指令</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3" rowspan="4" colspan="4">
          <widget class="QGroupBox" name="groupBox_6">
           <property name="title">
-           <string>铸造信息</string>
+           <string>信息</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
             <widget class="QTableView" name="tableViewMint"/>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="5">
-         <widget class="QGroupBox" name="groupBox_3">
-          <property name="title">
-           <string>本地文件获取</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_8">
-             <item>
-              <widget class="QLabel" name="label_8">
-               <property name="text">
-                <string>图片集合</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditPictureFile">
-               <property name="placeholderText">
-                <string>D:\programs\myNFT\Generate-NFT-main\Generate-NFT\output\edition test001\images</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonPictureFile">
-               <property name="text">
-                <string>选择文件夹</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="1" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_9">
-             <item>
-              <widget class="QLabel" name="label_9">
-               <property name="text">
-                <string>元数据josn集合</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditMetaFile">
-               <property name="placeholderText">
-                <string>C:\Users\lenovo\Desktop\ChiaMintNFT1\Meta</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonMetaFile">
-               <property name="text">
-                <string>选择文件夹</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_10">
-             <item>
-              <widget class="QLabel" name="label_10">
-               <property name="text">
-                <string>许可证</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditLicenceFile">
-               <property name="placeholderText">
-                <string>C:\Users\lenovo\Desktop\ChiaMintNFT1\Licence</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonLicenceFile">
-               <property name="text">
-                <string>选择文件夹</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="5">
-         <widget class="QGroupBox" name="groupBox_7">
-          <property name="title">
-           <string>环境配置</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_5">
-           <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_19">
-             <item>
-              <widget class="QLabel" name="label_20">
-               <property name="text">
-                <string>Chia deamon</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditDeamon"/>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonDeamon">
-               <property name="text">
-                <string>选择文件夹</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
            </item>
           </layout>
          </widget>
@@ -667,7 +662,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>980</width>
+     <width>977</width>
      <height>25</height>
     </rect>
    </property>

@@ -248,7 +248,7 @@ bool CMDCommand::downLoad(const QString & urlSpace)
 }
 
 
-int CMDCommand::run()
+int CMDCommand::makeCLI()
 {
     /* 在进行run之前，必须提前进行所有的set功能，完成对universalArg的初始化
      * 然后进行 row循环，内嵌column循环，
@@ -259,7 +259,7 @@ int CMDCommand::run()
      * 要点2：要时刻控制 currentRow,currentColumn两个变量，方便信号的输出和对全局的把控
      * 返回值：0成功，1图片无法下载，2元数据无法下载，3许可证无法下载
      */
-
+    result.clear();
     for(currentRow = 0;currentRow<uris.count();++currentRow){
         arg.clear();
         arg = universalArg;
@@ -278,11 +278,20 @@ int CMDCommand::run()
         if(!downLoad(licenseUris))
             return 3;
         //执行cmd命名
-        qDebug()<<"需要执行的arg："<<arg;
+        result<<arg;
     }
     return 0;
-
-
 }
 
+QString CMDCommand::checkCLI()
+{
+    QString checkString;
+    for(int i=0;i<result.count();++i){
+        for(int j=1;j<result.at(i).count();++j){
+            checkString+=result.at(i).at(j)+" ";
+        }
+        checkString+="\n";
+    }
+    return checkString;
+}
 

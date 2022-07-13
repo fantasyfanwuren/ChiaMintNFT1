@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "cmdcommand.h"
+
 #include <QProcess>
 #include <windows.h>
 #include <QTime>
@@ -12,7 +14,7 @@
 #include <QJsonDocument>
 #include <QDesktopServices>
 
-QString version = "V1.0";
+const QString version = "V1.0";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -244,6 +246,8 @@ void MainWindow::on_pushButtonMake_clicked()
             tempitem->setText("失败");
             failNumber++;
         }
+        //随着程序的进行，对滚动条动态跟随
+        ui->tableViewMeta->scrollTo(MetaModel->index(i,0));
     }
     if(failNumber==0 and makeLicense()){
         QMessageBox::information(this,"提示","元数据Json与许可证Json生成已完成");
@@ -365,15 +369,6 @@ void MainWindow::on_pushButtonMetaFile_clicked()
         ui->lineEditMetaFile->setText(metaPath);
 }
 
-
-void MainWindow::on_pushButtonLicenceFile_clicked()
-{
-    QString licensePath = QFileDialog::getExistingDirectory(this,"选择文件夹","");
-    if(!licensePath.isEmpty())
-        ui->lineEditLicenceFile->setText(licensePath);
-}
-
-
 void MainWindow::on_pushButtonNFTID_clicked()
 {
     /* 首先确认用户是否设置了环境和指纹
@@ -401,3 +396,157 @@ void MainWindow::on_pushButtonNFTID_clicked()
 
 }
 
+
+
+
+void MainWindow::on_downLoadPercentage(qint64 bytesReceived,qint64 bytesTotal,int row ,int column)
+{
+    float percentageF = bytesReceived/bytesTotal;
+    QString percentage = QString::asprintf("%.2f",percentageF);
+    //QStandardItem *item = new QStandardItem("正在下载："+percentage);
+    QStandardItem *item = MintModel->item(row,column);
+    item->setText("正在下载："+percentage);
+}
+
+void MainWindow::on_downLoadfinished(int row,int column)
+{
+    QStandardItem *item = MintModel->item(row,column);
+    item->setText("下载完成");
+}
+void MainWindow::on_downFail(int row,int column)
+{
+    QStandardItem *item = MintModel->item(row,column);
+    item->setText("下载失败");
+}
+void MainWindow::on_hashfinishde(int row,int column,const QString hash)
+{
+    QStandardItem *item = MintModel->item(row,column);
+    item->setText(hash);
+}
+
+
+
+
+void MainWindow::on_pushButtonMakeCLI_clicked()
+{
+    if(ui->lineEditPictureFile->text().isEmpty()){
+        QMessageBox::information(this,"提醒","请设置图片集合");
+        return;
+    }
+    if(ui->lineEditPictureLink->text().isEmpty()){
+        QMessageBox::information(this,"提醒","请设置图片集链接");
+        return;
+    }
+    if(ui->lineEditMetaFile->text().isEmpty()){
+        QMessageBox::information(this,"提醒","请设置元数据Json集合");
+        return;
+    }
+    if(ui->lineEditMetaLink->text().isEmpty()){
+        QMessageBox::information(this,"提醒","请设置元数据Json集链接");
+        return;
+    }
+
+    //创建一个CMDCommand对象,并设置工作环境（必选）
+    cmd = new CMDCommand(this);
+    if(!cmd->setWorkDir(ui->lineEditDeamon->text())){
+        QMessageBox::information(this,"提醒","请设置Chia Deamon");
+        return;
+    }
+
+    //添加图片列表（必选）
+    QDir pictureDir(ui->lineEditPictureFile->text());
+    QStringList pictureList = pictureDir.entryList(QDir::Files);
+    QStringList pictureUris;
+    for(int i=0;i<pictureList.count();++i)
+        pictureUris<<ui->lineEditPictureLink->text()+pictureList.at(i);
+    cmd->setUris(pictureUris);
+
+    //添加元数据列表（必选）
+    QDir metaDir(ui->lineEditMetaFile->text());
+    QStringList metaList = metaDir.entryList(QDir::Files);
+    QStringList metaUris;
+    for(int i=0;i<metaList.count();++i){
+        metaUris<<ui->lineEditMetaLink->text() + metaList.at(i);
+    }
+    cmd->setmetadataUris(metaUris);
+
+    //许可证的设置(选填)
+    if(!ui->lineEditLicenceLink->text().isEmpty()){
+        cmd->setLicenseUris(ui->lineEditLicenceLink->text());
+    }
+
+    //设置指纹（必选）
+    if(ui->lineEditFinger->text().isEmpty()){
+        QMessageBox::information(this,"提醒","请设置指纹");
+        return;
+    }
+    cmd->setFingerprint(ui->lineEditFinger->text());
+
+    //设置NFT钱包ID(必选)
+    if(ui->lineEditNFTID->text().isEmpty()){
+        QMessageBox::information(this,"提醒","请设置NFT钱包ID");
+        return;
+    }
+    cmd->setNFTID(ui->lineEditNFTID->text());
+
+    //设置目标地址（必选）
+    if(ui->lineEditTargetAddress->text().isEmpty()){
+        QMessageBox::information(this,"提醒","请设置目标地址");
+        return;
+    }
+    cmd->setTargetAddress(ui->lineEditTargetAddress->text());
+
+    //设置版税地址（必选）
+    if(ui->lineEditTaxAddress->text().isEmpty()){
+        QMessageBox::information(this,"提醒","请设置版税地址");
+        return;
+    }
+    cmd->setRoyaltyAddress(ui->lineEditTaxAddress->text());
+
+    //设置总版本号(选填)
+    if(!ui->lineEditTotalVersion->text().isEmpty()){
+        cmd->setSeriesTotal(ui->lineEditTotalVersion->text());
+    }
+    //设置当前版本号（选填）
+    if(!ui->lineEditCurrentVersion->text().isEmpty()){
+        cmd->setSeriesNumber(ui->lineEditCurrentVersion->text());
+    }
+    //设置版税
+    int royalty = ui->spinBoxTaxRate->value();
+    cmd->setRoyaltyPercentage(QString::number(royalty));
+
+    //信号与槽的链接，用于gui的显示
+    MintModel = new QStandardItemModel;
+    MintModel->setRowCount(metaList.count());
+    MintModel->setHorizontalHeaderLabels(
+                QStringList()<<"图片名称"<<"图片哈希"<<"元数据哈希"<<"许可证哈希"<<"执行");
+    ui->tableViewMint->setModel(MintModel);
+    ui->tableViewMint->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    connect(cmd,SIGNAL(downLoadPercentage(qint64,qint64,int,int))
+            ,this,SLOT(on_downLoadPercentage(qint64,qint64,int,int)));
+    connect(cmd,SIGNAL(downLoadfinished(int,int))
+            ,this,SLOT(on_downLoadfinished(int,int)));
+    connect(cmd,SIGNAL(downFail(int,int))
+            ,this,SLOT(on_downFail(int,int)));
+    connect(cmd,SIGNAL(hashfinishde(int,int,QString))
+            ,this,SLOT(on_hashfinishde(int,int,QString)));
+    cmd->makeCLI();
+    ui->pushButtonMintCheckCLI->setEnabled(true);
+
+}
+
+
+void MainWindow::on_pushButtonMintCheckCLI_clicked()
+{
+    DialogMetaHelp checkDialog(this);
+    checkDialog.setTitle("检查指令");
+    checkDialog.setText(cmd->checkCLI());
+    checkDialog.show();
+    ui->pushButtonMint->setEnabled(true);
+}
+
+void MainWindow::on_pushButtonMint_clicked()
+{
+
+
+}

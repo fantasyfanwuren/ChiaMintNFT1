@@ -12,6 +12,7 @@ class DialogMetaHelp : public QDialog
     Q_OBJECT
 public:
     void setText(const QString &text);
+    void setTitle(const QString &title);
 public:
     explicit DialogMetaHelp(QWidget *parent = nullptr);
     ~DialogMetaHelp();

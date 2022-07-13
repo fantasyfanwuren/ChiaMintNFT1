@@ -6,8 +6,7 @@
 
 class QStandardItemModel;
 class QJsonObject;
-
-extern QString version;
+class CMDCommand;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -44,15 +43,25 @@ private slots:
 
     void on_pushButtonMetaFile_clicked();
 
-    void on_pushButtonLicenceFile_clicked();
-
     void on_pushButtonNFTID_clicked();
+
+    void on_pushButtonMint_clicked();
+
+    void on_downLoadPercentage(qint64,qint64,int,int);
+    void on_downLoadfinished(int row,int colunm);
+    void on_downFail(int row,int colunm);
+    void on_hashfinishde(int row,int colunm,const QString hash);
+
+    void on_pushButtonMakeCLI_clicked();
+
+    void on_pushButtonMintCheckCLI_clicked();
 
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *MetaModel;
     QStandardItemModel *MintModel;
     DialogMetaHelp * dialogMetaHelp = NULL;
+    CMDCommand *cmd;
 
 };
 #endif // MAINWINDOW_H

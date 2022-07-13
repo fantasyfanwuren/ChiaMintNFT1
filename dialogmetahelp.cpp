@@ -25,3 +25,8 @@ void DialogMetaHelp::on_pushButton_2_clicked()
     close();
 }
 
+void DialogMetaHelp::setTitle(const QString &title)
+{
+    setWindowTitle(title);
+}
+

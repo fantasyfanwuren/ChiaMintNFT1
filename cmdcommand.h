@@ -24,7 +24,8 @@ public:
     bool setTargetAddress(const QString &ta);
     bool setSeriesNumber(const QString &sn);
     bool setSeriesTotal(const QString &st);
-    int run();
+    int makeCLI();
+    QString checkCLI();
 
 private:
     void wait(int sec);
@@ -61,6 +62,7 @@ private:
     bool downLoadState = false;
     int currentRow; //代表列表中的文件
     int currentColumn;//0代表文件，1代表图片哈希，2代表元数据哈希，3代表许可证哈希
+    QList<QStringList> result;
 };
 
 #endif // CMDCOMMAND_H
