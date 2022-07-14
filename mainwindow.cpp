@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setFixedSize(this->sizeHint());
+    //setFixedSize(this->sizeHint());
     setWindowTitle("ChiaMint_"+version);
 }
 
@@ -209,7 +209,15 @@ bool MainWindow::makeJson(int row,const QString &path)
         return true;
 
 }
+const QString MainWindow::nameByLength(int i)
+{
+    QString orignalName = QString::number(i);
+    int len = ui->spinBoxTotalNumber->value();
+    for(int i=0;i<len-orignalName.count();++i)
+        orignalName = "0"+orignalName;
+    return "/"+orignalName+".json";
 
+}
 void MainWindow::on_pushButtonMake_clicked()
 {
     /* 在程序所在目录创建一个<Meta>文件夹
@@ -238,7 +246,9 @@ void MainWindow::on_pushButtonMake_clicked()
     }
     int failNumber = 0;
     for(int i=0;i<MetaModel->rowCount();++i){
-        QString savePath = metaPath + QString::asprintf("/%d.json",i);
+        QString name = nameByLength(i);
+        QString savePath = metaPath + name;
+        qDebug()<<savePath;
         QStandardItem * tempitem = MetaModel->item(i,MetaModel->columnCount()-1);
         if(makeJson(i,savePath)){
             tempitem->setText("成功");

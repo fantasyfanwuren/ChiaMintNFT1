@@ -21,6 +21,7 @@ private:
     bool makeJson(int row,const QString &path);
     bool saveJsonFile(const QJsonObject &obj, const QString &path);
     bool makeLicense();
+    const QString nameByLength(int i);
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -55,6 +56,8 @@ private slots:
     void on_pushButtonMakeCLI_clicked();
 
     void on_pushButtonMintCheckCLI_clicked();
+
+
 
 private:
     Ui::MainWindow *ui;
