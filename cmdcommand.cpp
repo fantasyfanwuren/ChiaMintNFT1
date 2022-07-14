@@ -264,7 +264,8 @@ int CMDCommand::makeCLI()
      * 返回值：0成功，1图片无法下载，2元数据无法下载，3许可证无法下载
      */
     result.clear();
-    for(currentRow = 0;currentRow<uris.count();++currentRow){
+    //for(currentRow = 0;currentRow<uris.count();++currentRow){
+    for(currentRow = 0;currentRow<100;++currentRow){
         arg.clear();
         arg = universalArg;
         qDebug()<<"初始化的arg:"<<arg;

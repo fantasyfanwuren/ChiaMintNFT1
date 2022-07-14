@@ -211,11 +211,15 @@ bool MainWindow::makeJson(int row,const QString &path)
 }
 const QString MainWindow::nameByLength(int i)
 {
+    QString result;
     QString orignalName = QString::number(i);
+    result = orignalName;
     int len = ui->spinBoxTotalNumber->value();
     for(int i=0;i<len-orignalName.count();++i)
-        orignalName = "0"+orignalName;
-    return "/"+orignalName+".json";
+        result = "0"+result;
+    qDebug()<<"/"+result+".json";
+    return "/"+result+".json";
+
 
 }
 void MainWindow::on_pushButtonMake_clicked()
@@ -248,7 +252,6 @@ void MainWindow::on_pushButtonMake_clicked()
     for(int i=0;i<MetaModel->rowCount();++i){
         QString name = nameByLength(i);
         QString savePath = metaPath + name;
-        qDebug()<<savePath;
         QStandardItem * tempitem = MetaModel->item(i,MetaModel->columnCount()-1);
         if(makeJson(i,savePath)){
             tempitem->setText("成功");
