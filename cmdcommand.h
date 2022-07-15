@@ -38,6 +38,7 @@ signals:
     void downLoadfinished(int,int);
     void downFail(int,int);
     void hashfinishde(int,int,QString);
+    void mintMessage(int,QString);
 
 private slots:
     void on_downloadProgress(qint64 bytesReceived, qint64 bytesTotal);

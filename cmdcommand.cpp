@@ -265,7 +265,7 @@ int CMDCommand::makeCLI()
      */
     result.clear();
     //for(currentRow = 0;currentRow<uris.count();++currentRow){
-    for(currentRow = 0;currentRow<10;++currentRow){
+    for(currentRow = 0;currentRow<uris.count();++currentRow){
         arg.clear();
         arg = universalArg;
         qDebug()<<"初始化的arg:"<<arg;
@@ -303,14 +303,23 @@ QString CMDCommand::checkCLI()
 
 void CMDCommand::run()
 {
+    QString outPut;
     int number = result.count();
     for(int i=0;i<number;++i){
-        cmd->start("cmd.exe",result.at(i));
-        cmd->waitForStarted();
-        cmd->waitForFinished();
-        qDebug()<<QString::fromLocal8Bit(cmd->readAllStandardOutput());
-        if(i>=2){
-            break;
+
+        while (true) {
+            cmd->start("cmd.exe",result.at(i));
+            cmd->waitForStarted();
+            cmd->waitForFinished();
+            outPut = QString::fromLocal8Bit(cmd->readAllStandardOutput());
+            qDebug()<<outPut;
+            if(outPut.contains("NFT minted Successfully")){
+                emit mintMessage(i,"铸造成功");
+                break;
+            }else{
+                emit mintMessage(i,"等待上次铸造同步...");
+            }
+            wait(30);
         }
 
     }

@@ -569,9 +569,18 @@ void MainWindow::on_pushButtonMintCheckCLI_clicked()
     ui->pushButtonMint->setEnabled(true);
 }
 
+
+void MainWindow::on_mintMessage(int row,QString str)
+{
+    QStandardItem * theItem = MintModel->item(row,MintModel->columnCount()-1);
+    theItem->setText(str);
+    MintModel->setItem(row,MintModel->columnCount()-1,theItem);
+}
 void MainWindow::on_pushButtonMint_clicked()
 {
-
+    ui->pushButtonMint->setEnabled(false);
+    connect(cmd,SIGNAL(mintMessage(int,QString))
+            ,this,SLOT(on_mintMessage(int,QString)));
     cmd->run();
 
 }

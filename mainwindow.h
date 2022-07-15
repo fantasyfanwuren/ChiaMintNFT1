@@ -52,6 +52,7 @@ private slots:
     void on_downLoadfinished(int row,int colunm);
     void on_downFail(int row,int colunm);
     void on_hashfinishde(int row,int colunm,const QString hash);
+    void on_mintMessage(int,QString);
 
     void on_pushButtonMakeCLI_clicked();
 
