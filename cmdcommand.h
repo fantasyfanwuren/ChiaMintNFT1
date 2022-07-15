@@ -26,6 +26,7 @@ public:
     bool setSeriesTotal(const QString &st);
     int makeCLI();
     QString checkCLI();
+    void run;
 
 private:
     void wait(int sec);

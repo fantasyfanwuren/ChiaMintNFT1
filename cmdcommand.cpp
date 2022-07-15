@@ -300,3 +300,19 @@ QString CMDCommand::checkCLI()
     return checkString;
 }
 
+
+void CMDCommand::run()
+{
+    int number = result.count();
+    for(int i=0;i<number;++i){
+        cmd->start("cmd.exe",result.at(i));
+        cmd->waitForStarted();
+        cmd->waitForFinished();
+        qDebug()<<QString::fromLocal8Bit(cmd->readAllStandardOutput());
+        if(i>=2){
+            break;
+        }
+
+    }
+}
+

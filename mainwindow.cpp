@@ -568,5 +568,6 @@ void MainWindow::on_pushButtonMintCheckCLI_clicked()
 void MainWindow::on_pushButtonMint_clicked()
 {
 
+    cmd->run();
 
 }
