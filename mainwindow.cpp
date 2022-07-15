@@ -442,6 +442,8 @@ void MainWindow::on_hashfinishde(int row,int column,const QString hash)
 
 void MainWindow::on_pushButtonMakeCLI_clicked()
 {
+    ui->pushButtonMakeCLI->setEnabled(false);
+    ui->pushButtonMakeCLI->setText("正在生成...");
     if(ui->lineEditPictureFile->text().isEmpty()){
         QMessageBox::information(this,"提醒","请设置图片集合");
         return;
@@ -552,16 +554,18 @@ void MainWindow::on_pushButtonMakeCLI_clicked()
             ,this,SLOT(on_hashfinishde(int,int,QString)));
     cmd->makeCLI();
     ui->pushButtonMintCheckCLI->setEnabled(true);
+    ui->pushButtonMakeCLI->setText("命令列表已生成");
 
 }
 
 
 void MainWindow::on_pushButtonMintCheckCLI_clicked()
 {
-    DialogMetaHelp checkDialog(this);
-    checkDialog.setTitle("检查指令");
-    checkDialog.setText(cmd->checkCLI());
-    checkDialog.show();
+    checkDialog = new DialogMetaHelp;
+    checkDialog->setAttribute(Qt::WA_DeleteOnClose);
+    checkDialog->setTitle("检查指令");
+    checkDialog->setText(cmd->checkCLI());
+    checkDialog->show();
     ui->pushButtonMint->setEnabled(true);
 }
 

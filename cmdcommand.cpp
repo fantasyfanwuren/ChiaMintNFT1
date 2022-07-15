@@ -11,7 +11,7 @@ CMDCommand::CMDCommand(QObject *parent)
     : QObject{parent}
 {
     cmd = new QProcess(this);
-    arg<<"/c"<<"chia wallet nft mint";
+    universalArg<<"/c"<<"chia wallet nft mint";
 }
 
 
@@ -265,7 +265,7 @@ int CMDCommand::makeCLI()
      */
     result.clear();
     //for(currentRow = 0;currentRow<uris.count();++currentRow){
-    for(currentRow = 0;currentRow<100;++currentRow){
+    for(currentRow = 0;currentRow<10;++currentRow){
         arg.clear();
         arg = universalArg;
         qDebug()<<"初始化的arg:"<<arg;
@@ -295,7 +295,7 @@ QString CMDCommand::checkCLI()
         for(int j=1;j<result.at(i).count();++j){
             checkString+=result.at(i).at(j)+" ";
         }
-        checkString+="\n";
+        checkString+="\n\n";
     }
     return checkString;
 }

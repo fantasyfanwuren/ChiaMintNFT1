@@ -65,6 +65,7 @@ private:
     QStandardItemModel *MintModel;
     DialogMetaHelp * dialogMetaHelp = NULL;
     CMDCommand *cmd;
+    DialogMetaHelp *checkDialog = NULL;
 
 };
 #endif // MAINWINDOW_H
