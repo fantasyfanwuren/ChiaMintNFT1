@@ -60,6 +60,13 @@ private slots:
 
 
 
+    void on_pushButtonMintVideo_clicked();
+
+    void on_pushButtonMetaVideo_clicked();
+
+
+    void on_pushButtonNFTIDMake_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *MetaModel;

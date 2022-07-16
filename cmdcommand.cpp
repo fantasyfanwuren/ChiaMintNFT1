@@ -234,7 +234,7 @@ bool CMDCommand::downLoad(const QString & urlSpace)
     connect(reply,SIGNAL(finished()),this,SLOT(on_finished()));
     connect(reply,SIGNAL(downloadProgress(qint64, qint64))
                 ,this,SLOT(on_downloadProgress(qint64, qint64)));
-    int timeout = 30;
+    int timeout = 60;
     for(int i=0;i<timeout;++i){
             wait(1);
             if(downLoadState == false){
@@ -317,7 +317,7 @@ void CMDCommand::run()
                 emit mintMessage(i,"铸造成功");
                 break;
             }else{
-                emit mintMessage(i,"等待上次铸造同步...");
+                emit mintMessage(i,"自动等待上次铸造同步中...");
             }
             wait(30);
         }

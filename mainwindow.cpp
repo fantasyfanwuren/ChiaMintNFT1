@@ -13,8 +13,8 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QDesktopServices>
+#include <QClipboard>
 
-const QString version = "V1.0";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,7 +22,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     //setFixedSize(this->sizeHint());
-    setWindowTitle("ChiaMint_"+version);
+    setWindowTitle("ChiaMint_"+QApplication::applicationVersion());
+    setMinimumSize(sizeHint());
+    resize(sizeHint());
+    ui->pushButtonMetaHelp->setIcon(QIcon(":/ChiaMintNFT1.ico"));
+    ui->pushButtonMintHelp->setIcon(QIcon(":/ChiaMintNFT1.ico"));
+    ui->pushButtonMetaVideo->setIcon(QIcon(":/vidio.ico"));
+    ui->pushButtonMintVideo->setIcon(QIcon(":/vidio.ico"));
+    ui->pushButtonMake->setIcon(QIcon(":/start.ico"));
+    ui->pushButtonMint->setIcon(QIcon(":/start.ico"));
 }
 
 MainWindow::~MainWindow()
@@ -397,6 +405,8 @@ void MainWindow::on_pushButtonNFTID_clicked()
         QMessageBox::information(this,"警告","必须设置钱包指纹才能使用该功能！");
         return;
     }
+    ui->pushButtonNFTID->setEnabled(false);
+    ui->pushButtonNFTID->setText("查看中..");
     QProcess process(this);
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     process.setWorkingDirectory(ui->lineEditDeamon->text());
@@ -406,10 +416,70 @@ void MainWindow::on_pushButtonNFTID_clicked()
     process.waitForFinished();
     QMessageBox::information(this,"信息提醒",QString::fromLocal8Bit(process.readAllStandardOutput()));
     process.kill();
+    ui->pushButtonNFTID->setEnabled(true);
+    ui->pushButtonNFTID->setText("查看ID");
 
 }
 
+void MainWindow::on_pushButtonNFTIDMake_clicked()
+{
 
+    QString finger = ui->lineEditFinger->text();
+    QString deamonPath = ui->lineEditDeamon->text();
+    QString name = ui->lineEditName->text();
+    if(deamonPath.isEmpty() or finger.isEmpty() or name.isEmpty()){
+        QMessageBox::information(this,"警告","必须设置以下内容：\n"
+                                           "Chia deamon(本页面上方)\n"
+                                           "钱包指纹(本页面下方)\n"
+                                           "名称（上个页面中部）\n"
+                                           "才能使用该功能！");
+        return;
+    }
+    ui->pushButtonNFTIDMake->setEnabled(false);
+    ui->pushButtonNFTIDMake->setText("正在创建..");
+
+    QProcess process(this);
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    process.setWorkingDirectory(deamonPath);
+    QStringList arg;
+
+    // chia wallet did create -n My_DID
+    //创建DID
+    arg<<"/c"<<"chia wallet did create"<<"-n"<<name<<"-f"<<finger;
+    process.start("cmd.exe", arg);
+    process.waitForStarted();
+    process.waitForFinished();
+    QString outPut = QString::fromLocal8Bit(process.readAllStandardOutput());
+    qDebug()<<outPut;
+    int position = outPut.indexOf("did:chia:");
+    QString DID = outPut.mid(position,68);
+    qDebug()<<DID;
+    arg.clear();
+
+    /* chia wallet nft create -f 4288332900
+     * -di did:chia:17jvhl9z8zj6jma2uxk4mqj22p90hfpf29svlvlyalu8ksyefsvpql7f403
+     * -n "DID-linked NFT Wallet" */
+    //创建NFT钱包
+    arg<<"/c"<<"chia wallet nft create"<<"-n"<<name+"_NFT_Wallet"<<"-f"<<finger
+      <<"-di"<<DID;
+    qDebug()<<arg;
+    process.start("cmd.exe", arg);
+    process.waitForStarted();
+    process.waitForFinished();
+    outPut = QString::fromLocal8Bit(process.readAllStandardOutput());
+    qDebug()<<outPut;
+    arg.clear();
+
+    //查看DID
+    process.start("cmd.exe", arg<<"/c"<<"chia wallet show"<<"-f"<<ui->lineEditFinger->text());
+    process.waitForStarted();
+    process.waitForFinished();
+    QMessageBox::information(this,"信息提醒",QString::fromLocal8Bit(process.readAllStandardOutput()));
+    process.kill();
+    ui->pushButtonNFTIDMake->setEnabled(true);
+    ui->pushButtonNFTIDMake->setText("创建NFT钱包");
+
+}
 
 
 void MainWindow::on_downLoadPercentage(qint64 bytesReceived,qint64 bytesTotal,int row ,int column)
@@ -419,22 +489,33 @@ void MainWindow::on_downLoadPercentage(qint64 bytesReceived,qint64 bytesTotal,in
     qDebug()<<"gui bytesReceived"<<bytesReceived;
     QStandardItem *item = MintModel->item(row,column);
     item->setText("正在下载："+QString::number(bytesReceived));
+    //随着程序的进行，对滚动条动态跟随
+    ui->tableViewMint->scrollTo(MintModel->index(row,column));
 }
 
 void MainWindow::on_downLoadfinished(int row,int column)
 {
     QStandardItem *item = MintModel->item(row,column);
     item->setText("下载完成");
+    //随着程序的进行，对滚动条动态跟随
+    ui->tableViewMint->scrollTo(MintModel->index(row,column));
 }
+
 void MainWindow::on_downFail(int row,int column)
 {
     QStandardItem *item = MintModel->item(row,column);
     item->setText("下载失败");
+    //随着程序的进行，对滚动条动态跟随
+    ui->tableViewMint->scrollTo(MintModel->index(row,column));
 }
+
+
 void MainWindow::on_hashfinishde(int row,int column,const QString hash)
 {
     QStandardItem *item = MintModel->item(row,column);
     item->setText(hash);
+    //随着程序的进行，对滚动条动态跟随
+    ui->tableViewMint->scrollTo(MintModel->index(row,column));
 }
 
 
@@ -442,8 +523,7 @@ void MainWindow::on_hashfinishde(int row,int column,const QString hash)
 
 void MainWindow::on_pushButtonMakeCLI_clicked()
 {
-    ui->pushButtonMakeCLI->setEnabled(false);
-    ui->pushButtonMakeCLI->setText("正在生成...");
+
     if(ui->lineEditPictureFile->text().isEmpty()){
         QMessageBox::information(this,"提醒","请设置图片集合");
         return;
@@ -460,7 +540,8 @@ void MainWindow::on_pushButtonMakeCLI_clicked()
         QMessageBox::information(this,"提醒","请设置元数据Json集链接");
         return;
     }
-
+    ui->pushButtonMakeCLI->setEnabled(false);
+    ui->pushButtonMakeCLI->setText("正在生成...");
     //创建一个CMDCommand对象,并设置工作环境（必选）
     cmd = new CMDCommand(this);
     if(!cmd->setWorkDir(ui->lineEditDeamon->text())){
@@ -552,9 +633,17 @@ void MainWindow::on_pushButtonMakeCLI_clicked()
             ,this,SLOT(on_downFail(int,int)));
     connect(cmd,SIGNAL(hashfinishde(int,int,QString))
             ,this,SLOT(on_hashfinishde(int,int,QString)));
-    cmd->makeCLI();
+    int whenOut = cmd->makeCLI();
+    if(whenOut == 0){
+        QMessageBox::information(this,"提醒","已生成");
+        ui->pushButtonMakeCLI->setText("命令列表已生成");
+    }else{
+        QMessageBox::information(this,"提醒","网络链接不稳定或链接填写错误");
+        ui->pushButtonMakeCLI->setText("生成指令");
+        ui->pushButtonMakeCLI->setEnabled(true);
+    }
     ui->pushButtonMintCheckCLI->setEnabled(true);
-    ui->pushButtonMakeCLI->setText("命令列表已生成");
+
 
 }
 
@@ -575,6 +664,8 @@ void MainWindow::on_mintMessage(int row,QString str)
     QStandardItem * theItem = MintModel->item(row,MintModel->columnCount()-1);
     theItem->setText(str);
     MintModel->setItem(row,MintModel->columnCount()-1,theItem);
+    //随着程序的进行，对滚动条动态跟随
+    ui->tableViewMint->scrollTo(MintModel->index(row,MintModel->columnCount()-1));
 }
 void MainWindow::on_pushButtonMint_clicked()
 {
@@ -582,5 +673,29 @@ void MainWindow::on_pushButtonMint_clicked()
     connect(cmd,SIGNAL(mintMessage(int,QString))
             ,this,SLOT(on_mintMessage(int,QString)));
     cmd->run();
-
 }
+
+void MainWindow::on_pushButtonMintVideo_clicked()
+{
+    QMessageBox::information(this,"提醒","视频教程正在制作。\n"
+                                       "怕走丢，关注B站UP：中国数字党\n"
+                                       "已将地址复制到您的剪切版");
+    QClipboard *board = QApplication::clipboard();
+    board->setText("https://space.bilibili.com/407407190");
+}
+
+
+void MainWindow::on_pushButtonMetaVideo_clicked()
+{
+    QMessageBox::information(this,"提醒","视频教程正在制作。\n"
+                                       "怕走丢，关注B站UP：中国数字党\n"
+                                       "已将地址复制到您的剪切版");
+    QClipboard *board = QApplication::clipboard();
+    board->setText("https://space.bilibili.com/407407190");
+}
+
+
+
+
+
+

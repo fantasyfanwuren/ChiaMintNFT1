@@ -31,3 +31,21 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+#应用图标
+RC_ICONS += ChiaMintNFT1.ico
+
+#版本号
+VERSION = 1.0.0
+#中文
+RC_LANG = 0x0004
+# 公司名
+QMAKE_TARGET_COMPANY = 中国数字党
+# 产品名称
+QMAKE_TARGET_PRODUCT = ChiaMintNFT1
+# 详细描述
+QMAKE_TARGET_DESCRIPTION = 批量化铸造NFT脚本
+# 版权
+QMAKE_TARGET_COPYRIGHT = Copyright(C) 2022 the China Digital party
+
+

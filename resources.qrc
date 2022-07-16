@@ -1,11 +1,16 @@
 <RCC>
     <qresource prefix="/help"/>
-    <qresource prefix="/help" lang="CH">
+    <qresource lang="CH" prefix="/help">
         <file>MetaHelp.txt</file>
     </qresource>
-    <qresource prefix="/License" lang="EN"/>
-    <qresource prefix="/License" lang="En"/>
-    <qresource prefix="/License" lang="English">
+    <qresource lang="EN" prefix="/License"/>
+    <qresource lang="En" prefix="/License"/>
+    <qresource lang="English" prefix="/License">
         <file>License.txt</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>ChiaMintNFT1.ico</file>
+        <file>vidio.ico</file>
+        <file>start.ico</file>
     </qresource>
 </RCC>
