@@ -699,3 +699,27 @@ void MainWindow::on_pushButtonMetaVideo_clicked()
 
 
 
+
+void MainWindow::on_pushButtonMintHelp_clicked()
+{
+    QString path =":/help/MintHelp.txt";
+    QFile file(path);
+    if(!file.exists()){
+        QMessageBox::information(this,"提示","未找到MintHelp帮助文档");
+        return;
+    }
+    if(!file.open(QIODevice::ReadOnly|QIODevice::Text)){
+        QMessageBox::information(this,"提示","MintHelp帮助文档打开失败");
+        return;
+    }
+    QString helpText = file.readAll();
+    file.close();
+    dialogMetaHelp = new DialogMetaHelp;
+    dialogMetaHelp->setAttribute(Qt::WA_DeleteOnClose);
+    //Qt::WindowFlags flags = dialogMetaHelp->windowFlags();
+    //dialogMetaHelp->setWindowFlags(flags|Qt::WindowStaysOnTopHint);
+    dialogMetaHelp->setText(helpText);
+    dialogMetaHelp->setWindowTitle("MintHelp帮助文档");
+    dialogMetaHelp->show();
+}
+

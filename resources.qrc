@@ -2,6 +2,7 @@
     <qresource prefix="/help"/>
     <qresource lang="CH" prefix="/help">
         <file>MetaHelp.txt</file>
+        <file>MintHelp.txt</file>
     </qresource>
     <qresource lang="EN" prefix="/License"/>
     <qresource lang="En" prefix="/License"/>

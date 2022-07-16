@@ -67,6 +67,8 @@ private slots:
 
     void on_pushButtonNFTIDMake_clicked();
 
+    void on_pushButtonMintHelp_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *MetaModel;
